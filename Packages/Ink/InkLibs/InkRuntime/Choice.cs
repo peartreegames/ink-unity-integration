@@ -28,6 +28,11 @@ namespace Ink.Runtime
         }
 
         /// <summary>
+        /// The number of times this choice has been chosen
+        /// </summary>
+        public int chosenCount;
+
+        /// <summary>
         /// Get the path to the original choice point - where was this choice defined in the story?
         /// </summary>
         /// <value>A dot separated path into the story data.</value>

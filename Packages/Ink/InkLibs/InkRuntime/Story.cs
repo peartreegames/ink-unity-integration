@@ -1015,11 +1015,9 @@ namespace Ink.Runtime
             }
 
             // Don't create choice if player has already read this content
-            if (choicePoint.onceOnly) {
-                var visitCount = state.VisitCountForContainer (choicePoint.choiceTarget);
-                if (visitCount > 0) {
-                    showChoice = false;
-                }
+            var visitCount = state.VisitCountForContainer (choicePoint.choiceTarget);
+            if (choicePoint.onceOnly && visitCount > 0) {
+                showChoice = false;
             }
 
             // We go through the full process of creating the choice above so
@@ -1033,6 +1031,7 @@ namespace Ink.Runtime
             choice.targetPath = choicePoint.pathOnChoice;
             choice.sourcePath = choicePoint.path.ToString ();
             choice.isInvisibleDefault = choicePoint.isInvisibleDefault;
+            choice.chosenCount = visitCount;
 
             // We need to capture the state of the callstack at the point where
             // the choice was generated, since after the generation of this choice
